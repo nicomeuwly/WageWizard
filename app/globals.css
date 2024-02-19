@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   /* Colors */
   --bg-black: #000000;
@@ -9,9 +13,24 @@
   --green: #00FF85;
   --purple: #A35BFF;
   /* Gradients */
-  --bg-gradient: linear-gradient(180deg, #000000 0%, #313131 100%);
-  --yellow-gradient: linear-gradient(180deg, #C79B00 0%, #FFDC61 100%);
-  --red-gradient: linear-gradient(180deg, #860028 0%, #FF004D 100%);
-  --green-gradient: linear-gradient(180deg, #008243 0%, #00FF85 100%);
-  --purple-gradient: linear-gradient(180deg, #430098 0%, #A35BFF 100%);
+  --bg-gradient: linear-gradient(#313131, #000000);
+  --yellow-gradient: linear-gradient(#FFDC61, #C79B00);
+  --red-gradient: linear-gradient(#FF004D, #860028);
+  --green-gradient: linear-gradient(#00FF85, #008243);
+  --purple-gradient: linear-gradient(#A35BFF, #430098);
+}
+
+/* Base configuration */
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Background */
+body {
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  height: 100dvh;
+  width: 100dvw;
 }
