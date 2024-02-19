@@ -1,0 +1,78 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider  = "postgresql"
+    url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+    directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+}
+
+model user {
+    id             String              @id @default(cuid())
+    name           String
+    email          String              @unique
+    password       String
+    hourlyWage     Decimal             @map(name: "hourly_wage")
+    adjustements   salary_adjustment[]
+    timeEntries    time_entry[]
+    monthlyReports monthly_report[]
+    annualReports  annual_report[]
+    createdAt      DateTime            @default(now()) @map(name: "created_at")
+    updatedAt      DateTime            @updatedAt @map(name: "updated_at")
+
+    @@map(name: "users")
+}
+
+model salary_adjustment {
+    id         String   @id @default(cuid())
+    name       String
+    type       String
+    percentage Decimal
+    user       user     @relation(fields: [userId], references: [id])
+    userId     String
+    createdAt  DateTime @default(now()) @map(name: "created_at")
+    updatedAt  DateTime @updatedAt @map(name: "updated_at")
+
+    @@map(name: "salary_adjustments")
+}
+
+model time_entry {
+    id        String   @id @default(cuid())
+    startTime DateTime @map(name: "start_time")
+    endTime   DateTime @map(name: "end_time")
+    user      user     @relation(fields: [userId], references: [id])
+    userId    String
+    createdAt DateTime @default(now()) @map(name: "created_at")
+    updatedAt DateTime @updatedAt @map(name: "updated_at")
+
+    @@map(name: "time_entries")
+}
+
+model monthly_report {
+    id                  String   @id @default(cuid())
+    month               Int
+    year                Int
+    totalWorkedHours    Decimal  @map(name: "total_worked_hours")
+    differencePrevMonth Decimal  @map(name: "difference_prev_month")
+    monthlySalary       Decimal  @map(name: "monthly_salary")
+    user                user     @relation(fields: [userId], references: [id])
+    userId              String
+    createdAt           DateTime @default(now()) @map(name: "created_at")
+    updatedAt           DateTime @updatedAt @map(name: "updated_at")
+
+    @@map(name: "monthly_reports")
+}
+
+model annual_report {
+    id               String   @id @default(cuid())
+    year             Int
+    totalWorkedHours Decimal  @map(name: "total_worked_hours")
+    annualSalary     Decimal  @map(name: "annual_salary")
+    user             user     @relation(fields: [userId], references: [id])
+    userId           String
+    createdAt        DateTime @default(now()) @map(name: "created_at")
+    updatedAt        DateTime @updatedAt @map(name: "updated_at")
+
+    @@map(name: "annual_reports")
+}
