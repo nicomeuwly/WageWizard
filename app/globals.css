@@ -1,33 +1,17 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  /* Colors */
+  --bg-black: #000000;
+  --bg-gray: #313131;
+  --text-primary: #ffffff;
+  --text-secondary: #999999;
+  --yellow: #FFDC61;
+  --red: #FF004D;
+  --green: #00FF85;
+  --purple: #A35BFF;
+  /* Gradients */
+  --bg-gradient: linear-gradient(180deg, #000000 0%, #313131 100%);
+  --yellow-gradient: linear-gradient(180deg, #C79B00 0%, #FFDC61 100%);
+  --red-gradient: linear-gradient(180deg, #860028 0%, #FF004D 100%);
+  --green-gradient: linear-gradient(180deg, #008243 0%, #00FF85 100%);
+  --purple-gradient: linear-gradient(180deg, #430098 0%, #A35BFF 100%);
 }
