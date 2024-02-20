@@ -1,7 +1,17 @@
-export default function Header({ title }: any) {
-    return <header className="bg-bg-gray p-5 w-full h-16 border-b-2 border-purple flex flex-row justify-between">
-        <div>Bouton 1</div>
-        <h1 className="font-bold">{ title }</h1>
-        <div>Bouton 2</div>
-    </header>;
+"use client";
+import Link from "next/link";
+
+export default function Header(props: { title: string, leftButton: { icon: string, link: string }, rightButton: { icon: string, link: string } }) {
+    let displayLeftButton: boolean = false;
+    let displayRightButton: boolean = false;
+    props.leftButton.icon && props.leftButton.link ? displayLeftButton = true : displayLeftButton = false;
+    props.rightButton.icon && props.rightButton.link ? displayRightButton = true : displayRightButton = false;
+
+    return (
+        <header className="bg-bg-gray p-5 w-full border-b-2 border-purple flex flex-row">
+            <Link href={props.leftButton.link} className={"text-left align-middle text-font-secondary " + (!displayLeftButton ? "pointer-events-none hidden" : "basis-[20%]")}><span className="material-symbols-rounded h-full align-middle">{props.leftButton.icon}</span></Link>
+            <h1 className={"font-bold text-center align-middle " + (!displayLeftButton && !displayRightButton ? "w-full" : "basis-[60%]")}>{props.title}</h1>
+            <Link href={props.rightButton.link} className={"text-right align-middle text-font-secondary " + (!displayRightButton ? "pointer-events-none hidden" : "basis-[20%]")}><span className="material-symbols-rounded h-full align-middle">{props.rightButton.icon}</span></Link>
+        </header>
+    )
 }

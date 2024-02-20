@@ -16,8 +16,8 @@ const config: Config = {
       colors: {
         "bg-black": "var(--bg-black)",
         "bg-gray": "var(--bg-gray)",
-        "text-primary": "var(--text-primary)",
-        "text-secondary": "var(--text-secondary)",
+        "font-primary": "var(--text-primary)",
+        "font-secondary": "var(--text-secondary)",
         "yellow": "var(--yellow)",
         "red": "var(--red)",
         "green": "var(--green)",

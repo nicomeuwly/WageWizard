@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import './globalicon.css';
 import React from "react";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
 
 export const metadata: Metadata = {
@@ -17,7 +16,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className="flex flex-col flex-wrap justify-between"><Header title="Tableau de bord"/>{children}<Footer /></body>
+      <body className="flex flex-col">
+        <div className="basis-[90%]">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }
