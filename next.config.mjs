@@ -4,6 +4,8 @@ import {
 } from "next/constants.js";
 
 export default async (phase) => {
+    let nextConfig = {};
+
     if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
         const withSerwist = (await import("@serwist/next")).default({
             swSrc: "app/sw.ts",
