@@ -4,20 +4,20 @@
 
 :root {
   /* Colors */
-  --bg-black: #000000;
-  --bg-gray: #313131;
+  --black: #000000;
+  --gray: #313131;
+  --gray-2: #454545;
   --text-primary: #ffffff;
   --text-secondary: #999999;
-  --yellow: #FFDC61;
+  --yellow: #FFD645;
   --red: #FF004D;
   --green: #00FF85;
-  --purple: #A35BFF;
   /* Gradients */
-  --bg-gradient: linear-gradient(#313131, #000000);
-  --yellow-gradient: linear-gradient(#FFDC61, #C79B00);
-  --red-gradient: linear-gradient(#FF004D, #860028);
-  --green-gradient: linear-gradient(#00FF85, #008243);
-  --purple-gradient: linear-gradient(#A35BFF, #430098);
+  --bg-gradient: -webkit-linear-gradient(#313131, #000000);
+  --yellow-gradient: -webkit-linear-gradient(#FFDC61, #C79B00);
+  --red-gradient: -webkit-linear-gradient(#FF004D, #860028);
+  --green-gradient: -webkit-linear-gradient(#00FF85, #008243);
+  --silver-gradient: -webkit-linear-gradient(#FFFFFF, #999999);
 }
 
 /* Base configuration */
