@@ -22,7 +22,9 @@ export default function Home() {
 
   const setTime = () => {
     const date = new Date();
-    const timeString = date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const timeString = (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
     return timeString;
   }
 

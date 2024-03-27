@@ -1,6 +1,8 @@
+"use client";
+
 import Link from "next/link";
+import styles from "./footer.module.css";
 import { usePathname } from "next/navigation";
-import path from "path";
 
 export default function FooterElement(props: {
   href: string;
@@ -14,7 +16,7 @@ export default function FooterElement(props: {
       className={
         "basis-1/4 flex flex-col justify-center justify-items-center text-center text-sm " +
         (pathName.split("/")[1] === props.href
-          ? "text-font-primary"
+          ? "text-font-primary" + " " + styles.active
           : "text-font-secondary")
       }
     >
