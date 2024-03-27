@@ -1,37 +1,18 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import styles from "./footer.module.css";
+import FooterElement from "./footerElement";
 
 
 export default function Footer() {
-  const pathName = usePathname();
   return (
-    <footer className="p-5 w-full flex flex-row justify-around">
-      <Link
-        href="/"
-        className={"flex flex-col justify-items-center text-center focus:text-font-primary text-sm " + (pathName === "/" ? "text-font-primary" : "text-font-secondary")}
-      >
-        <span className="material-symbols-rounded text-center text-4xl">home</span>Accueil
-      </Link>
-      <Link
-        href="/entry"
-        className={"flex flex-col justify-items-center text-center focus:text-font-primary text-sm " + (pathName.includes("/entry") ? "text-font-primary" : "text-font-secondary")}
-      >
-        <span className="material-symbols-rounded text-center text-4xl">alarm_add</span>Saisie
-      </Link>
-      <Link
-        href="/calendar"
-        className={"flex flex-col justify-items-center text-center focus:text-font-primary text-sm " + (pathName.includes("/calendar") ? "text-font-primary" : "text-font-secondary")}
-      >
-        <span className="material-symbols-rounded text-center text-4xl">calendar_month</span>Calendrier
-      </Link>
-      <Link
-        href="/account"
-        className={"flex flex-col justify-items-center text-center focus:text-font-primary text-sm " + (pathName.includes("/account") ? "text-font-primary" : "text-font-secondary")}
-      >
-        <span className="material-symbols-rounded text-center text-4xl">account_circle</span>Compte
-      </Link>
+    <footer className={"w-full flex justify-center " + styles.footer}>
+      <div className={styles.navigation}>
+        <FooterElement href="" icon="home" name="Accueil" />
+        <FooterElement href="entry" icon="alarm_add" name="Saisie" />
+        <FooterElement href="calendar" icon="calendar_month" name="Calendrier" />
+        <FooterElement href="account" icon="account_circle" name="Compte" />
+      </div>
     </footer>
   );
 }

@@ -22,11 +22,7 @@ const config: Config = {
         "yellow": "var(--yellow)",
         "red": "var(--red)",
         "green": "var(--green)",
-        "bg-gradient": "var(--bg-gradient)",
-        "yellow-gradient": "var(--yellow-gradient)",
-        "red-gradient": "var(--red-gradient)",
-        "green-gradient": "var(--green-gradient)",
-        "silver-gradient": "var(--silver-gradient)",
+        "bg-gradient": "var(--bg-gradient)"
       },
     },
   },
