@@ -35,3 +35,8 @@ body {
   height: 100dvh;
   width: 100dvw;
 }
+
+html {
+  background-color: var(--gray);
+  overflow: hidden;
+}
