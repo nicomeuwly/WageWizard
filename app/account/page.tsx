@@ -1,8 +1,12 @@
 import Header from "@/components/header";
 import Link from "next/link";
 import styles from "./account.module.css";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../api/auth/[...nextauth]/route";
+import { LogoutButton } from "@/components/auth";
 
-export default function Account() {
+export default async function Account() {
+  const session = await getServerSession(authOptions)
   const leftButton = {
     icon: "",
     link: "",
@@ -21,7 +25,7 @@ export default function Account() {
       />
       <div className="p-5 flex flex-col items-center h-5/6">
         <h1 className="text-xl font-bold text-center align-middle">
-          Nicolas Meuwly
+          {session && session.user && session.user.name}
         </h1>
         <div className="pt-2 pb-8 flex flex-row items-center gap-2">
           <div className="bg-green w-3 h-3 rounded-full"></div>
@@ -38,6 +42,7 @@ export default function Account() {
             Historique
           </Link>
         </div>
+        <LogoutButton />
       </div>
     </>
   );

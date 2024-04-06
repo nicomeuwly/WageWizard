@@ -1,8 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import './globalicon.css';
+import "./globalicon.css";
 import React from "react";
 import Footer from "@/components/footer";
+import { Providers } from "./providers";
 
 const APP_NAME = "WageWizard";
 const APP_DEFAULT_TITLE = "WageWizard";
@@ -40,8 +41,10 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="flex flex-col">
-        <div className="basis-[90%]">{children}</div>
-        <Footer />
+        <Providers>
+          <div className="basis-[90%]">{children}</div>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
