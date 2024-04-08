@@ -2,11 +2,10 @@ import Header from "@/components/header";
 import Link from "next/link";
 import styles from "./account.module.css";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
 import { LogoutButton } from "@/components/auth";
 
 export default async function Account() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession()
   const leftButton = {
     icon: "",
     link: "",
