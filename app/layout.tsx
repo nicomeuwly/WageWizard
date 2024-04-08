@@ -4,6 +4,7 @@ import "./globalicon.css";
 import React from "react";
 import Footer from "@/components/footer";
 import { Providers } from "./providers";
+import { getServerSession } from "next-auth";
 
 const APP_NAME = "WageWizard";
 const APP_DEFAULT_TITLE = "WageWizard";
@@ -33,18 +34,23 @@ export const viewport: Viewport = {
   themeColor: "#313131",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
   return (
     <html lang="fr">
-      <body className="flex flex-col">
-        <Providers>
-          <div className="basis-[90%]">{children}</div>
-          <Footer />
-        </Providers>
+      <body className="flex flex-col" id="app">
+        {session ? (
+          <Providers>
+            <div className="basis-[90%]">{children}</div>
+            <Footer />
+          </Providers>
+        ) : (
+          <div className="h-full w-full">{children}</div>
+        )}
       </body>
     </html>
   );
