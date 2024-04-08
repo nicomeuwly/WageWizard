@@ -6,6 +6,7 @@ interface InputProps {
     placeholder: string
     error: boolean
     icon: string
+    autocomplete?: string
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -46,6 +47,7 @@ export default function AuthInput(props: InputProps) {
                 type={props.type}
                 name={props.name}
                 placeholder={props.placeholder}
+                autoComplete={props.autocomplete}
                 onChange={props.onChange}
                 ref={ref as React.RefObject<HTMLInputElement>}
                 onFocus={handleOnFocus}

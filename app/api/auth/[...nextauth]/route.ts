@@ -19,7 +19,7 @@ const handler = NextAuth ({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          return null;
+          throw new Error("Il manque des informations de connexion.");
         }
 
         const user = await prisma.user.findUnique({
@@ -29,7 +29,7 @@ const handler = NextAuth ({
         });
 
         if (!user) {
-          return null;
+          throw new Error("Adresse e-mail ou mot de passe incorrect.");
         }
 
         const isPasswordValid = await compare(
@@ -38,7 +38,7 @@ const handler = NextAuth ({
         );
 
         if (!isPasswordValid) {
-          return null;
+          throw new Error("Adresse e-mail ou mot de passe incorrect.");
         }
 
         return {
