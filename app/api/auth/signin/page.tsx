@@ -1,5 +1,6 @@
 "use client";
 import { LoginButton } from "@/components/auth";
+import AuthInput from "@/components/authInput";
 import { signIn } from "next-auth/react";
 import React, { useRef } from "react";
 
@@ -25,20 +26,8 @@ export default function SignInPage() {
         onSubmit={onSubmit}
         className="flex flex-col items-center w-full gap-8"
       >
-        <input
-          className="bg-gray-2 w-2/3 rounded-full p-4 text-white"
-          type="text"
-          name="email"
-          placeholder="Adresse e-mail"
-          onChange={(e) => (email.current = e.target.value)}
-        />
-        <input
-          className="bg-gray-2 w-2/3 rounded-full p-4 text-white"
-          type="password"
-          name="password"
-          placeholder="Mot de passe"
-          onChange={(e) => (password.current = e.target.value)}
-        />
+        <AuthInput type="text" name="email" placeholder="Adresse e-mail" onChange={(e) => (email.current = e.target.value)} error={false} icon="alternate_email"/>
+        <AuthInput type="password" name="password" placeholder="Mot de passe" onChange={(e) => (password.current = e.target.value)} error={false} icon="key_vertical"/>
         <LoginButton />
       </form>
     </div>

@@ -34,9 +34,4 @@ body {
   color: var(--text-primary);
   height: 100dvh;
   width: 100dvw;
-  overflow: scroll;
-}
-
-html {
-  overflow: hidden;
 }
