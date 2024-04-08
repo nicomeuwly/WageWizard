@@ -41,7 +41,7 @@ export default async function RootLayout({
 }>) {
   const session = await getServerSession();
   return (
-    <html lang="fr">
+    <html lang="fr" className="fixed touch-pan-y">
       <body className="flex flex-col" id="app">
         {session ? (
           <Providers>
