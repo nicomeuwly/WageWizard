@@ -1,11 +1,10 @@
 import Header from "@/components/header";
-import Link from "next/link";
-import styles from "./account.module.css";
 import { getServerSession } from "next-auth";
 import { LogoutButton } from "@/components/auth";
+import { LinkElement } from "@/components/listElement";
 
 export default async function Account() {
-  const session = await getServerSession()
+  const session = await getServerSession();
   const leftButton = {
     icon: "",
     link: "",
@@ -31,15 +30,21 @@ export default async function Account() {
           En ligne
         </div>
         <div className="w-full h-full flex flex-col gap-8 items-center">
-          <Link href="/account/infos" className={styles.setting}><span className="material-symbols-rounded">person</span>
-            Infos personnelles
-          </Link>
-          <Link href="/account/params" className={styles.setting}><span className="material-symbols-rounded">attach_money</span>
-            Paramètres du salaire
-          </Link>
-          <Link href="/account/history" className={styles.setting}><span className="material-symbols-rounded">history</span>
-            Historique
-          </Link>
+          <LinkElement
+            href="/account/infos"
+            icon="person"
+            text="Informations personnelles"
+          />
+          <LinkElement
+            href="/account/params"
+            icon="attach_money"
+            text="Paramètres du salaire"
+          />
+          <LinkElement
+            href="/account/history"
+            icon="history"
+            text="Historique"
+          />
         </div>
         <LogoutButton />
       </div>
