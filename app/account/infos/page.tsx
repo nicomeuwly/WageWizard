@@ -11,7 +11,13 @@ export default async function Infos() {
     icon: "",
     link: "",
   };
+
   const session = await getServerSession();
+  const response = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/user?email=${session?.user?.email}`,
+    { method: "GET" }
+  );
+  const userId = await response.json();
 
   return (
     <>
@@ -20,20 +26,32 @@ export default async function Infos() {
         leftButton={leftButton}
         rightButton={rightButton}
       />
-      <div className="p-5 flex flex-col items-center h-5/6 gap-16">
+      <div className="p-5 flex flex-col items-center h-full gap-16">
         <h1 className="text-xl font-bold text-center align-middle">
           Liste des informations
         </h1>
-        <div className="w-full h-full flex flex-col gap-8 items-center">
+        <div className="w-full h-2/3 overflow-auto">
           <ListElement
             icon="person"
-            text={(session && session.user && session.user.name) ?? ""}
+            text={session?.user?.name ?? ""}
+            userId={userId}
+            label="nom"
+            fieldToUpdate="name"
           />
           <ListElement
             icon="alternate_email"
-            text={(session && session.user && session.user.email) ?? ""}
+            text={session?.user?.email ?? ""}
+            userId={userId}
+            label="mail"
+            fieldToUpdate="email"
           />
-          <ListElement icon="key_vertical" text="**************" />
+          <ListElement
+            icon="key_vertical"
+            text="**************"
+            userId={userId}
+            label="mot de passe"
+            fieldToUpdate="password"
+          />
         </div>
       </div>
     </>

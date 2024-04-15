@@ -4,7 +4,7 @@ import FooterElement from "./footerElement";
 
 export default async function Footer() {
   return (
-    <footer className={"w-full flex justify-center " + styles.footer}>
+    <footer className={"absolute bottom-0 z-20 w-full flex justify-center " + styles.footer}>
       <div className={styles.navigation}>
         <FooterElement href="" icon="home" name="Accueil" />
         <FooterElement href="entry" icon="alarm_add" name="Saisie" />

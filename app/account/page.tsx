@@ -21,15 +21,15 @@ export default async function Account() {
         leftButton={leftButton}
         rightButton={rightButton}
       />
-      <div className="p-5 flex flex-col items-center h-5/6">
+      <div className="p-5 flex flex-col items-center h-full">
         <h1 className="text-xl font-bold text-center align-middle">
           {session && session.user && session.user.name}
         </h1>
-        <div className="pt-2 pb-8 flex flex-row items-center gap-2">
+        <div className="pt-2 pb-8 flex flex-row items-center gap-2 text-font-secondary">
           <div className="bg-green w-3 h-3 rounded-full"></div>
           En ligne
         </div>
-        <div className="w-full h-full flex flex-col gap-8 items-center">
+        <div className="w-full h-full flex flex-col gap-8 items-center mb-16">
           <LinkElement
             href="/account/infos"
             icon="person"
@@ -39,6 +39,11 @@ export default async function Account() {
             href="/account/params"
             icon="attach_money"
             text="Paramètres du salaire"
+          />
+          <LinkElement
+            href="/account/calculation"
+            icon="equal"
+            text="Calcul du salaire"
           />
           <LinkElement
             href="/account/history"
