@@ -5,6 +5,7 @@ import React from "react";
 import Footer from "@/components/footer";
 import { Providers } from "./providers";
 import { getServerSession } from "next-auth";
+import { Analytics } from "@vercel/analytics/react"
 
 const APP_NAME = "WageWizard";
 const APP_DEFAULT_TITLE = "WageWizard";
@@ -51,6 +52,7 @@ export default async function RootLayout({
         ) : (
           <div className="h-full w-full">{children}</div>
         )}
+        <Analytics />
       </body>
     </html>
   );
