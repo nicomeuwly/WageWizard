@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { Providers } from "./providers";
 import { getServerSession } from "next-auth";
 import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const APP_NAME = "WageWizard";
 const APP_DEFAULT_TITLE = "WageWizard";
@@ -53,6 +54,7 @@ export default async function RootLayout({
           <div className="h-full w-full">{children}</div>
         )}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
