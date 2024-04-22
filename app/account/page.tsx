@@ -29,7 +29,7 @@ export default async function Account() {
           <div className="bg-green w-3 h-3 rounded-full"></div>
           En ligne
         </div>
-        <div className="w-full h-full flex flex-col gap-8 items-center mb-16">
+        <div className="w-full h-1/2 flex flex-col gap-8 items-center mb-16">
           <LinkElement
             href="/account/infos"
             icon="person"

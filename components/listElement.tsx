@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { TextInput } from "./inputs";
+import { CircleButton } from "./buttons";
 
 export function ListElement(props: {
   icon: string;
@@ -15,14 +16,14 @@ export function ListElement(props: {
 
   if (!isOpen) {
     return (
-      <div className="flex items-center gap-4 w-full h-20	mb-8 bg-gray rounded-2xl">
+      <div className="flex items-center gap-4 w-full h-20 bg-gray rounded-2xl mb-8">
         <span className="material-symbols-rounded flex justify-center items-center w-1/6 h-full text-4xl bg-gray-2 rounded-2xl">
           {props.icon}
         </span>
         <div className="flex w-9/12 items-center justify-between">
           {props.text}
           <span
-            className="material-symbols-rounded text-yellow"
+            className="material-symbols-rounded aspect-square text-yellow rounded-full hover:bg-gray-2 p-2"
             onClick={() => setIsOpen(true)}
           >
             edit
@@ -32,26 +33,24 @@ export function ListElement(props: {
     );
   } else {
     return (
-      <div className="flex flex-col justify-between items-center gap-4 w-full h-60	mb-8 bg-gray rounded-2xl">
-        <div className="w-full mt-8 flex flex-col items-center gap-4">
-          <h2 className="w-3/4 font-bold text-yellow text-left">
-            Modification du {props.label}
-          </h2>
-          <TextInput placeholder={props.text} />
+      <div className="mb-12 w-full h-48 flex flex-col gap-8 items-center">
+        <div className="flex items-center gap-4 w-full h-20 bg-gray-2 rounded-2xl">
+          <span className="material-symbols-rounded flex justify-center items-center w-1/6 h-full text-4xl bg-gray-2 rounded-2xl">
+            {props.icon}
+          </span>
+          <div className="flex w-9/12 items-center justify-between">
+            {props.label}
+            <span
+              className="material-symbols-rounded aspect-square text-font-secondary rounded-full hover:bg-gray-2 p-2"
+              onClick={() => setIsOpen(false)}
+            >
+              close
+            </span>
+          </div>
         </div>
-        <div className="flex flex-row gap-8 justify-evenly items-center w-full h-1/3 bg-gray-2 rounded-b-2xl">
-          <span
-            className="material-symbols-rounded flex items-center justify-center h-3/4 aspect-square p-2 bg-gray rounded-full text-4xl text-white"
-            onClick={() => setIsOpen(false)}
-          >
-            close
-          </span>
-          <span
-            className="material-symbols-rounded flex items-center justify-center h-3/4 aspect-square p-2 bg-gray rounded-full text-4xl text-yellow"
-            onClick={() => setIsOpen(false)}
-          >
-            done
-          </span>
+        <div className="flex flex-row items-center gap-8 w-11/12">
+          <TextInput placeholder={props.text} />
+          <CircleButton icon="done" onClick={() => setIsOpen(false)} />
         </div>
       </div>
     );

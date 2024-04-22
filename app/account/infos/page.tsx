@@ -1,6 +1,7 @@
 import Header from "@/components/header";
 import { ListElement } from "@/components/listElement";
 import { getServerSession } from "next-auth";
+import { useState } from "react";
 
 export default async function Infos() {
   const leftButton = {
@@ -35,21 +36,21 @@ export default async function Infos() {
             icon="person"
             text={session?.user?.name ?? ""}
             userId={userId}
-            label="nom"
+            label="Nom"
             fieldToUpdate="name"
           />
           <ListElement
             icon="alternate_email"
             text={session?.user?.email ?? ""}
             userId={userId}
-            label="mail"
+            label="Adresse e-mail"
             fieldToUpdate="email"
           />
           <ListElement
             icon="key_vertical"
             text="**************"
             userId={userId}
-            label="mot de passe"
+            label="Mot de passe"
             fieldToUpdate="password"
           />
         </div>

@@ -17,9 +17,11 @@ const config: Config = {
         "black": "var(--black)",
         "gray": "var(--gray)",
         "gray-2": "var(--gray-2)",
+        "gray-3": "var(--gray-3)",
         "font-primary": "var(--text-primary)",
         "font-secondary": "var(--text-secondary)",
         "yellow": "var(--yellow)",
+        "yellow-2": "var(--yellow-opacity)",
         "red": "var(--red)",
         "green": "var(--green)",
         "bg-gradient": "var(--bg-gradient)"

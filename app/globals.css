@@ -8,9 +8,11 @@
   --gray: #313131;
   --gray-opacity: rgba(49, 49, 49, 0.5);
   --gray-2: #454545;
+  --gray-3: #333333;
   --text-primary: #ffffff;
   --text-secondary: #999999;
   --yellow: #ffd645;
+  --yellow-opacity: rgba(255, 214, 97, 0.7);
   --red: #ff004d;
   --green: #00ff85;
   /* Gradients */
