@@ -1,18 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { TextInput } from "./inputs";
 import { CircleButton } from "./buttons";
+import { signOut } from "next-auth/react";
 
 export function ListElement(props: {
   icon: string;
   text: string;
   userId: string;
   label: string;
+  type: "text" | "number" | "email" | "password";
+  autocomplete?: string;
   fieldToUpdate: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  const dataToUpdate = useRef("");
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await fetch(`/api/user/${props.userId}`, {
+      method: "PUT",
+      body: JSON.stringify({ [props.fieldToUpdate]: dataToUpdate.current }),
+    });
+    if (response.ok) {
+      setIsOpen(false);
+      if (props.fieldToUpdate === "password" || props.fieldToUpdate === "email") {
+        signOut();
+      }
+    }
+  };
 
   if (!isOpen) {
     return (
@@ -48,10 +66,18 @@ export function ListElement(props: {
             </span>
           </div>
         </div>
-        <div className="flex flex-row items-center gap-8 w-11/12">
-          <TextInput placeholder={props.text} />
-          <CircleButton icon="done" onClick={() => setIsOpen(false)} />
-        </div>
+        <form
+          onSubmit={onSubmit}
+          className="w-11/12 flex flex-row items-center gap-8"
+        >
+          <TextInput
+            type={props.type}
+            placeholder={props.text}
+            autocomplete={props.autocomplete}
+            onChange={(e) => (dataToUpdate.current = e.target.value)}
+          />
+          <CircleButton icon="done" type="submit" />
+        </form>
       </div>
     );
   }
@@ -61,13 +87,17 @@ export function LinkElement(props: {
   href: string;
   icon: string;
   text: string;
+  style?: string;
 }) {
   return (
     <Link
       href={props.href}
-      className="flex items-center gap-4 w-full h-20 bg-gray rounded-2xl"
+      className={
+        "flex items-center gap-4 w-full h-20 bg-gray hover:bg-gray-2 " +
+        props.style
+      }
     >
-      <span className="material-symbols-rounded flex justify-center items-center w-1/6 h-full text-4xl bg-gray-2 rounded-2xl">
+      <span className="material-symbols-rounded flex justify-center items-center w-1/6 h-full text-4xl text-yellow">
         {props.icon}
       </span>
       <div className="flex w-9/12 items-center justify-between">

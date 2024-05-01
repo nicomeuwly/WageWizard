@@ -1,7 +1,6 @@
 import Header from "@/components/header";
 import { ListElement } from "@/components/listElement";
-import { getServerSession } from "next-auth";
-import { useState } from "react";
+import { getUser } from "@/lib/userActions";
 
 export default async function Infos() {
   const leftButton = {
@@ -13,13 +12,7 @@ export default async function Infos() {
     link: "",
   };
 
-  const session = await getServerSession();
-  const response = await fetch(
-    `${process.env.NEXTAUTH_URL}/api/user?email=${session?.user?.email}`,
-    { method: "GET" }
-  );
-  const userId = await response.json();
-
+  const user = await getUser();
   return (
     <>
       <Header
@@ -34,23 +27,29 @@ export default async function Infos() {
         <div className="w-full h-2/3 overflow-auto">
           <ListElement
             icon="person"
-            text={session?.user?.name ?? ""}
-            userId={userId}
+            text={user.name}
+            userId={user.id}
             label="Nom"
+            type="text"
+            autocomplete="new-name"
             fieldToUpdate="name"
           />
           <ListElement
             icon="alternate_email"
-            text={session?.user?.email ?? ""}
-            userId={userId}
+            text={user.email}
+            userId={user.id}
             label="Adresse e-mail"
+            type="email"
+            autocomplete="new-email"
             fieldToUpdate="email"
           />
           <ListElement
             icon="key_vertical"
             text="**************"
-            userId={userId}
+            userId={user.id}
             label="Mot de passe"
+            type="password"
+            autocomplete="new-password"
             fieldToUpdate="password"
           />
         </div>
