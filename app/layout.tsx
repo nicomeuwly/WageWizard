@@ -47,7 +47,7 @@ export default async function RootLayout({
       <body className="flex flex-col static overflow-hidden" id="app">
         {session ? (
           <Providers>
-            <div className="absolute z-10 w-full h-full">{children}</div>
+            <div className="absolute z-10 w-full h-5/6">{children}</div>
             <Footer />
           </Providers>
         ) : (

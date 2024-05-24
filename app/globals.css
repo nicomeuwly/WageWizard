@@ -5,6 +5,7 @@
 :root {
   /* Colors */
   --black: #000000;
+  --black-2: #050505;
   --gray: #313131;
   --gray-opacity: rgba(49, 49, 49, 0.5);
   --gray-2: #454545;

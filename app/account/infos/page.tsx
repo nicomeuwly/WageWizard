@@ -11,7 +11,6 @@ export default async function Infos() {
     icon: "",
     link: "",
   };
-
   const user = await getUser();
   return (
     <>
