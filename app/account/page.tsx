@@ -1,35 +1,21 @@
-import Header from "@/components/header";
 import { getServerSession } from "next-auth";
 import { LogoutButton } from "@/components/auth";
 import { LinkElement } from "@/components/listElement";
+import PageLayout from "@/components/pageLayout";
 
-export default async function Account() {
+export default async function AccountPage() {
   const session = await getServerSession();
-  const leftButton = {
-    icon: "",
-    link: "",
-  };
-  const rightButton = {
-    icon: "",
-    link: "",
-  };
 
   return (
-    <>
-      <Header
-        title="Compte"
-        leftButton={leftButton}
-        rightButton={rightButton}
-      />
-      <div className="p-5 flex flex-col items-center h-full">
-        <h1 className="text-xl font-bold text-center align-middle">
-          {session && session.user && session.user.name}
-        </h1>
-        <div className="pt-2 pb-8 flex flex-row items-center gap-2 text-font-secondary">
-          <div className="bg-green w-3 h-3 rounded-full"></div>
-          En ligne
-        </div>
-        <div className="w-full h-1/2 flex flex-col items-center mb-16">
+    <PageLayout
+      leftButton={["", ""]}
+      rightButton={["", ""]}
+      headerTitle="Compte"
+      title={session?.user?.name ?? ""}
+      subtitle="status"
+      online={true}
+      children={
+        <div className="w-full h-3/4 overflow-auto flex flex-col items-center">
           <LinkElement
             href="/account/infos"
             icon="person"
@@ -52,11 +38,11 @@ export default async function Account() {
             href="/account/history"
             icon="history"
             text="Historique"
-            style="rounded-b-2xl border-t border-t-gray-2"
+            style="rounded-b-2xl border-t border-t-gray-2 mb-16"
           />
+          <LogoutButton />
         </div>
-        <LogoutButton />
-      </div>
-    </>
+      }
+    />
   );
 }

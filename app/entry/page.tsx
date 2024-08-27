@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 
-export default function Entry() {
+export default function EntryPage() {
   const leftButton = {
     icon: "",
     link: ""

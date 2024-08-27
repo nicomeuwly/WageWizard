@@ -2,7 +2,7 @@ import Header from "@/components/header";
 import Stats from "@/components/stats";
 import TimeDateElement from "@/components/timeDateElement";
 
-export default async function Home() {
+export default async function HomePage() {
   const leftButton = {
     icon: "",
     link: ""

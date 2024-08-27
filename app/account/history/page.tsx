@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 
-export default function History() {
+export default function HistoryPage() {
   const leftButton = {
     icon: "arrow_back_ios",
     link: "/account"

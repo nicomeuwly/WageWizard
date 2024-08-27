@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 
-export default function Calendar() {
+export default function CalendarPage() {
   const leftButton = {
     icon: "bar_chart",
     link: "/account/history"
