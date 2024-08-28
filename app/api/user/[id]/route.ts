@@ -48,7 +48,7 @@ export async function PUT(
         body.password = await bcrypt.hash(body.password, 10);
       }
     }
-    if(body.email) {
+    if (body.email) {
       const isEmailValided = await isEmailValid(body.email);
       if (!isEmailValided) {
         return new Response(

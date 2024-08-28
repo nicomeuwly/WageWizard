@@ -151,7 +151,12 @@ export function ParamsElement(props: {
   valueType: string;
   link: string;
 }) {
-  const encocdedName = encodeURIComponent(props.text);
+  const toDecimal = (num: number, nbDecimals: number) => {
+      typeof num !== "number" ? num = parseFloat(num) : num;
+      if(typeof nbDecimals !== "number") return;
+      num = parseFloat(num.toString()) || 0;
+      return num.toFixed(nbDecimals);
+  }
   return (
     <div className="flex items-center gap-4 w-full h-20 bg-gray rounded-2xl mb-8">
       {!props.type ? (
@@ -165,7 +170,7 @@ export function ParamsElement(props: {
           </span>
           <span
             className={
-              "material-symbols-rounded absolute bottom-3 right-2 flex justify-center items-center text-lg rounded-full h-7 aspect-square text-gray border-4 border-gray-2 " +
+              "material-symbols-rounded absolute bottom-3 right-2 flex justify-center items-center text-lg rounded-full h-7 w-7 text-gray border-4 border-gray-2 " +
               (props.type === "supplement" ? "bg-green" : "bg-red")
             }
           >
@@ -177,10 +182,10 @@ export function ParamsElement(props: {
         <p className="basis-3/6">{props.text}</p>
         <p className="basis-2/6 text-right">
           {props.valueType === "percent"
-            ? props.value + "%"
-            : "CHF " + props.value}
+            ? toDecimal(props.value, 3) + "%"
+            : "CHF " + toDecimal(props.value, 2)}
         </p>
-        <Link href={props.link + "?name=" + encocdedName} className="flex justify-end basis-1/6 items-center aspect-square">
+        <Link href={props.link} className="flex justify-end basis-1/6 items-center aspect-square">
           <span className="material-symbols-rounded text-yellow p-2 hover:bg-gray-2 rounded-full">
             edit
           </span>

@@ -5,8 +5,8 @@ import React from "react";
 import Footer from "@/components/footer";
 import { Providers } from "./providers";
 import { getServerSession } from "next-auth";
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const APP_NAME = "WageWizard";
 const APP_DEFAULT_TITLE = "WageWizard";

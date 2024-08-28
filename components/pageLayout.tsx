@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 
-export default async function PageLayout(props: { leftButton: any[], rightButton: any[], headerTitle: string, title: string, subtitle?: string, subtitleText?: string, online?: boolean, params?: number[], children: React.ReactNode }) {
+export default function PageLayout(props: { leftButton: any[], rightButton: any[], headerTitle: string, title: string, subtitle?: string, subtitleText?: string, online?: boolean, params?: number[], children: React.ReactNode }) {
     const subtitles: { [key: string]: JSX.Element } = {
         supplement: <h2 className="text-center align-middle text-green">Supplément</h2>,
         deduction: <h2 className="text-center align-middle text-red">Déduction</h2>,

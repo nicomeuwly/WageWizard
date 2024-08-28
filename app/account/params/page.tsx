@@ -1,9 +1,36 @@
+"use client";
 import { getUser } from "@/lib/userActions";
 import { ParamsElement } from "@/components/listElement";
 import PageLayout from "@/components/pageLayout";
+import { useEffect, useState } from "react";
 
-export default async function ParamsPage() {
-  const user = await getUser();
+export default function ParamsPage() {
+  const [params, setParams] = useState<any[]>([]);
+  const [user, setUser] = useState<any>();
+  const [totalPerParams, setTotalPerParams] = useState<any>({});
+  const countBy = (arr: any[], prop: string) => arr.reduce((prev, curr) => (prev[curr[prop]] = ++prev[curr[prop]] || 1, prev), {});
+
+  const getParams = async () => {
+    try {
+      const user = await getUser();
+      const response = await fetch(`/api/salary/parameter?userId=${user.id}`);
+      const responseData = await response.json();
+      if (response.ok) {
+        setParams(responseData);
+        setUser(user);
+        const count = countBy(responseData, "type");
+        setTotalPerParams(count);
+      } else {
+        throw new Error(responseData.error || "Unknown error occurred");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getParams();
+  }, []);
 
   return (
     <PageLayout
@@ -12,16 +39,13 @@ export default async function ParamsPage() {
       headerTitle="Paramètres du salaire"
       title="Liste des paramètres"
       subtitle="params"
-      params={[2, 2]}
+      params={[totalPerParams.supplement, totalPerParams.deduction]}
       children={
         <div className="w-full h-3/4 overflow-auto">
-          <ParamsElement icon="attach_money" text="Salaire horaire" value={Number(user.wage)} valueType="currency" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="Vacances" value={Number(10.640)} valueType="percent" type="supplement" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="13ème salaire" value={Number(8.333)} valueType="percent" type="supplement" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="AVS" value={Number(5.300)} valueType="percent" type="deduction" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="AC" value={Number(1.100)} valueType="percent" type="deduction" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="LAA" value={Number(0.630)} valueType="percent" type="deduction" link="/account/params/edit/test" />
-          <ParamsElement icon="attach_money" text="IJM" value={Number(0.600)} valueType="percent" type="deduction" link="/account/params/edit/test" />
+          {user ? <ParamsElement icon="attach_money" text="Salaire horaire" value={user.wage} valueType="currency" link="/account/params/edit/wage" /> : null}
+          {params.map((param, index) => (
+            <ParamsElement key={index} icon="attach_money" text={param.name} value={Number(param.percentage)} valueType="percent" type={param.type} link={`/account/params/edit/${param.id}`} />
+          ))}
         </div>
       }
     />
