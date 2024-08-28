@@ -115,7 +115,7 @@ export default function EditParamPage() {
       children={
         <div className="w-full h-3/4 flex flex-col items-center gap-6">
           {urlParams.paramsId === "wage" && user ?
-            <form className="w-5/6 h-full flex flex-col items-center justify-between" onSubmit={onSubmit}>
+            <form className="w-5/6 h-5/6 flex flex-col items-center justify-between" onSubmit={onSubmit}>
               <div className="w-full h-fit flex flex-col items-center gap-8">
                 <TextInput type="number" placeholder={user.wage} label="Valeur (CHF)" error={false} onChange={(e) => (value.current = parseFloat(e.target.value))} />
                 {error ? <p className="text-red">{result}</p> : null}
@@ -123,7 +123,7 @@ export default function EditParamPage() {
               <MainButton text="Valider" size="small" type="submit" />
             </form> : null}
           {param ?
-            <form className="w-5/6 h-full flex flex-col items-center justify-between" onSubmit={onSubmit}>
+            <form className="w-5/6 h-5/6 flex flex-col items-center justify-between" onSubmit={onSubmit}>
               <div className="w-full h-fit flex flex-col items-center gap-8">
                 <TextInput type="text" placeholder={param.name} label="Dénomination" error={false} onChange={(e) => (name.current = e.target.value)} />
                 <TextInput type="number" placeholder={param.percentage} label="Valeur (%)" error={false} onChange={(e) => (value.current = parseFloat(e.target.value))} />

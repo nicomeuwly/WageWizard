@@ -9,7 +9,7 @@ export function MainButton(props: {
 }) {
   return (
     <button
-      className={"h-12 bg-yellow rounded-lg font-bold text-gray text-xl flex items-center justify-center hover:bg-yellow-2" + (props.size === "large" ? " w-5/6" : " w-1/2")}
+      className={"p-3 bg-yellow text-xl text-gray font-bold rounded-lg hover:bg-yellow-2 hover:text-yellow " + (props.size === "large" ? " w-5/6" : " w-1/2")}
       onClick={props.onClick}
       type={props.type}
     >
@@ -26,7 +26,7 @@ export function SecondaryButton(props: {
 }) {
   return (
     <button
-      className={"h-12 bg-white rounded-lg font-bold text-gray text-xl flex items-center justify-center hover:bg-white/50" + (props.size === "large" ? " w-5/6" : " w-1/2")}
+      className={"p-3 bg-white text-xl text-gray font-bold rounded-lg hover:bg-white/50 hover:text-white" + (props.size === "large" ? " w-5/6" : " w-1/2")}
       onClick={props.onClick}
       type={props.type}
     >
